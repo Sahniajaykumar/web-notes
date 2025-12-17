@@ -194,3 +194,66 @@ App.jsx → Root component
 index.html → Single HTML file
 
 vite.config.js → Vite configuration
+
+
+----------------------------------------------
+Basic Structure of ReactJs : 
+------------------------------------------------
+import { createRoot } from "react-dom/client";
+
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);
+
+
+Line-by-line Explanation : 
+--------------------------------
+1. Importing createRoot
+import { createRoot } from "react-dom/client";
+-------------------------------------------------
+
+Imports the React 18 API for rendering React applications
+
+react-dom/client connects React with the browser DOM
+
+createRoot enables concurrent rendering
+
+📌 Interview keyword: Concurrent Mode
+
+2. Accessing the DOM element
+document.getElementById("root")
+--------------------------------------
+
+Selects the HTML element:
+
+<div id="root"></div>
+
+
+This is the mounting point for the React app
+
+3. Creating a React root
+const root = createRoot(document.getElementById("root"));
+-----------------------------------------------------------
+
+Creates a React root object
+
+Tells React where to render the UI
+
+React now controls everything inside the #root div
+
+4. Rendering the App component
+root.render(<App />);
+-----------------------------------------------
+
+Renders the App component inside the root
+
+<App /> is the entry component
+
+React converts JSX into DOM elements and displays them
+
+What happens internally?
+
+React creates a Virtual DOM
+
+Compares it using diffing
+
+Updates only changed parts in the real DOM
