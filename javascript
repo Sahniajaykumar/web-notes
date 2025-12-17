@@ -207,10 +207,9 @@ Output
 ✔️ Reference changed locally
 ✔️ Original object untouched
 
+----------------🔥 Interview quastions for pass by --------------------------------------------
 
-🔥 Interview Question 1
-
-Will the original value change? Why?
+Question 1 : Will the original value change? Why?
 
 function increment(x) {
   x = x + 1;
@@ -340,6 +339,7 @@ Q: Is JavaScript pass by reference?
 A: ❌ No. It is pass by value — object references are passed by value.
 
 
+-------------------------pass by references-----------------------------------------------------------
 
   ❌ First, the Truth (Very Important)
 
