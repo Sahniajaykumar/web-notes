@@ -1,0 +1,196 @@
+--------------------------------
+What is ReactJs ? 
+-------------------------------
+ReactJS is an open-source JavaScript library developed by Facebook for building fast, scalable, and reusable user interfaces, mainly for single-page applications (SPAs).
+
+React helps us to build UI's declaratively .
+
+React use virtual dom to optimise performance .
+  
+Instead of manually changing the DOM, React uses a virtual DOM to decide the fastest way to update the page.
+
+ Virtual DOM : 
+-------------------------------
+React creates a virtual copy of the DOM
+
+When data changes, React:
+
+              Updates the virtual DOM
+  
+              Compares it with the previous version
+
+              Updates only what changed in the real DOM
+
+This makes React fast and efficient.
+
+-----------------------------------
+Why ReactJS was introduced
+-----------------------------------
+1. Problem with traditional DOM manipulation
+
+Earlier, developers directly updated the real DOM
+
+Frequent DOM updates were slow and inefficient
+
+Complex UIs became hard to manage
+
+➡️ React introduced the Virtual DOM to update only what changes.
+
+2. Difficulty managing large, dynamic UIs
+
+Applications like Facebook had:
+
+Real-time updates
+
+Large amounts of changing data
+
+MVC frameworks became complex and error-prone
+
+➡️ React simplified UI development using components.
+
+---------------------------------
+Advantages of ReactJS : 
+---------------------------------
+High performance due to Virtual DOM
+
+Reusable components
+
+SEO-friendly (with SSR like Next.js)
+
+Large ecosystem and community
+
+--------------------------------
+History of ReactJS
+---------------------------------
+1. Origin at Facebook (2011)
+
+React was created by Jordan Walke, a software engineer at Facebook
+
+Facebook faced issues managing complex, fast-changing UIs (news feed updates, notifications)
+
+Traditional MVC frameworks were slow and hard to scale
+
+➡️ React was built to solve performance and UI consistency problems
+
+2. First internal use
+
+React was first used internally on Facebook’s News Feed
+
+Later adopted by Instagram
+
+3. Open-sourced (2013)
+
+Facebook open-sourced React in 2013
+
+Initially met with skepticism because of JSX
+
+Gradually gained popularity due to performance and simplicity
+
+4. Introduction of the Virtual DOM
+
+One of React’s biggest innovations
+
+Allowed efficient updates without directly manipulating the real DOM
+
+5. Growth and ecosystem expansion
+
+Community adoption grew rapidly
+
+Tools and libraries emerged:
+
+Redux (state management)
+
+React Router (routing)
+
+Next.js (server-side rendering)
+
+6. Introduction of Hooks (2019)
+
+React 16.8 introduced Hooks
+
+Allowed state and lifecycle features in functional components
+
+Reduced dependency on class components
+
+7. Modern React (Present)
+
+Emphasis on:
+
+Functional components
+
+Hooks
+
+Concurrent rendering
+
+Used by major companies like:
+
+Facebook (Meta)
+
+Netflix
+
+Airbnb
+
+--------------------------------------------------------
+Steps to create a React project using Vite
+--------------------------------------------------------
+1. Install Node.js
+-----------------------
+Make sure Node.js is installed:
+node -v
+npm -v
+
+2. Create a Vite + React project
+-----------------------------------------
+Run:  
+npm create vite@latest
+
+You’ll be prompted to choose:
+
+Project name
+Framework → React
+Variant → JavaScript or TypeScript
+
+3. Move into project folder
+----------------------------
+cd project-name
+
+4. Install dependencies
+----------------------------
+npm install
+
+5. Start the development server
+-----------------------------------
+npm run dev
+
+Open the browser at:
+----------------------
+http://localhost:5173
+
+-------------------------------------
+Alternative (direct command)
+------------------------------------
+npm create vite@latest my-react-app -- --template react
+
+
+Or for TypeScript:
+
+npm create vite@latest my-react-app -- --template react-ts
+
+Project structure (important for interviews)
+my-react-app/
+│── src/
+│   ├── App.jsx
+│   ├── main.jsx
+│── index.html
+│── package.json
+│── vite.config.js
+
+Key files explanation
+
+main.jsx → Entry point
+
+App.jsx → Root component
+
+index.html → Single HTML file
+
+vite.config.js → Vite configuration
