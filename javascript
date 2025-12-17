@@ -1,3 +1,377 @@
+---------------------------🔹 Function in JavaScript-----------------------------------------------------
+
+✅ What is a Function?
+
+A function is a reusable block of code designed to perform a specific task and can be executed (called) whenever needed.
+
+1️⃣ Function Declaration
+🔹 Syntax
+function functionName(parameters) {
+  // code
+}
+
+🔹 Example
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(5, 3));
+
+🔹 Output
+8
+
+🔹 Explanation
+
+Function is defined using function keyword
+
+Reusable and hoisted
+
+Called using function name
+
+2️⃣ Function Expression
+🔹 Syntax
+let variable = function(parameters) {
+  // code
+};
+
+🔹 Example
+let greet = function(name) {
+  return "Hello " + name;
+};
+
+console.log(greet("Ajay"));
+
+🔹 Output
+Hello Ajay
+
+🔹 Explanation
+
+Function stored in variable
+
+Not hoisted
+
+Treated as an object
+
+3️⃣ Arrow Function (ES6)
+🔹 Syntax
+let fn = (params) => expression;
+
+🔹 Example
+let square = (n) => n * n;
+
+console.log(square(4));
+
+🔹 Output
+16
+
+🔹 Explanation
+
+Shorter syntax
+
+No own this
+
+Used in modern JS
+
+4️⃣ Function with Return Value
+🔹 Example
+function multiply(a, b) {
+  return a * b;
+}
+
+console.log(multiply(4, 5));
+
+🔹 Output
+20
+
+🔹 Explanation
+
+return sends value back
+
+Function stops execution after return
+
+5️⃣ Function Without Return (Void)
+🔹 Example
+function showMessage() {
+  console.log("Welcome");
+}
+
+showMessage();
+
+🔹 Output
+Welcome
+
+🔹 Explanation
+
+No return value
+
+Used for side effects
+
+6️⃣ Function as an Object
+🔹 Example
+function demo() {}
+demo.type = "example";
+
+console.log(demo.type);
+
+🔹 Output
+example
+
+🔹 Explanation
+
+Functions can have properties
+
+Proof that function is an object
+
+7️⃣ Function Passed as Argument (Callback)
+🔹 Example
+function process(fn) {
+  fn();
+}
+
+function sayHi() {
+  console.log("Hi");
+}
+
+process(sayHi);
+
+🔹 Output
+Hi
+
+🔹 Explanation
+
+Function passed as parameter
+
+Used in async & event handling
+
+8️⃣ Function Returning Function
+🔹 Example
+function outer() {
+  return function inner() {
+    return "Inner";
+  };
+}
+
+let f = outer();
+console.log(f());
+
+🔹 Output
+Inner
+
+🔹 Explanation
+
+Supports closures
+
+Functional programming concept
+
+
+--------------------------🔹 Function Types in JavaScript (Based on Input & Output)-------------------------------------
+
+✅ 1️⃣ No Input & No Output
+🔹 Syntax
+function functionName() {
+  // statements
+}
+
+🔹 Example
+function greet() {
+  console.log("Hello Ajay");
+}
+
+greet();
+
+🔹 Output
+Hello Ajay
+
+🔹 Explanation
+
+Function does not take parameters
+
+Function does not return any value
+
+Used for displaying messages or logging
+
+✅ 2️⃣ No Input but Return Output
+🔹 Syntax
+function functionName() {
+  return value;
+}
+
+🔹 Example
+function getMessage() {
+  return "Welcome Ajay";
+}
+
+console.log(getMessage());
+
+🔹 Output
+Welcome Ajay
+
+🔹 Explanation
+
+Function has no parameters
+
+Uses return to send output
+
+Used when output is fixed or internally calculated
+
+✅ 3️⃣ Takes Input but No Output (No Return)
+🔹 Syntax
+function functionName(parameters) {
+  // logic
+}
+
+🔹 Example
+function showSquare(n) {
+  console.log(n * n);
+}
+
+showSquare(5);
+
+🔹 Output
+25
+
+🔹 Explanation
+
+Function accepts input
+
+Does not return value (undefined)
+
+Used for printing, logging, UI updates
+
+✅ 4️⃣ Takes Input and Return Output (Most Common)
+🔹 Syntax
+function functionName(parameters) {
+  return value;
+}
+
+🔹 Example
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(10, 20));
+
+🔹 Output
+30
+
+🔹 Explanation
+
+Function accepts input
+
+Returns processed result
+
+Used for calculations and business logic
+
+
+-----------------------------------------🔹 Hoisting in JavaScript------------------------------------------------------
+
+✅ What is Hoisting?
+
+Hoisting is JavaScript’s default behavior of moving variable and function declarations to the top of their scope before execution.
+
+⚠️ Only declarations are hoisted, not initializations.
+
+1️⃣ Function Hoisting (MOST IMPORTANT)
+🔹 Example
+sayHello();
+
+function sayHello() {
+  console.log("Hello Ajay");
+}
+
+🔹 Output
+Hello Ajay
+
+🔹 Explanation
+
+Function declarations are fully hoisted
+
+You can call the function before its definition
+
+2️⃣ Variable Hoisting with var
+🔹 Example
+console.log(x);
+var x = 10;
+
+🔹 Output
+undefined
+
+🔹 Explanation
+
+var x is hoisted
+
+Initialization (=10) is NOT hoisted
+
+JS treats it as:
+
+var x;
+console.log(x);
+x = 10;
+
+3️⃣ Hoisting with let
+🔹 Example
+console.log(a);
+let a = 5;
+
+❌ Output
+ReferenceError: Cannot access 'a' before initialization
+
+🔹 Explanation
+
+let is hoisted but in Temporal Dead Zone (TDZ)
+
+Cannot access before declaration
+
+4️⃣ Hoisting with const
+🔹 Example
+console.log(b);
+const b = 10;
+
+❌ Output
+ReferenceError: Cannot access 'b' before initialization
+
+🔹 Explanation
+
+Same as let
+
+Must be initialized at declaration
+
+5️⃣ Function Expression Hoisting (TRICKY)
+🔹 Example
+sayHi();
+
+var sayHi = function () {
+  console.log("Hi");
+};
+
+❌ Output
+TypeError: sayHi is not a function
+
+🔹 Explanation
+
+Variable sayHi is hoisted as undefined
+
+Function body is not hoisted
+
+6️⃣ Arrow Function Hoisting
+🔹 Example
+greet();
+
+const greet = () => {
+  console.log("Hello");
+};
+
+❌ Output
+ReferenceError: Cannot access 'greet' before initialization
+
+🔹 Explanation
+
+Arrow functions behave like let/const
+
+Not hoisted like normal functions
+
+
+
 --------------------------------------------------🔹 Object Creation in JavaScript ?--------------------------------------------------
 
 👉 Total Common Ways: 5 (Interview Standard)
@@ -95,9 +469,6 @@ child.name = "Ajay";
 ✔️ Prototype-based
 ✔️ Advanced concept
 
-
-
-  .
 
 --------------------------------------------🔹 What is Pass by Value in JavaScript?-----------------------------------------------------------
 
@@ -428,5 +799,330 @@ Output
 person → reference → { name: "Ajay" }
 copy of reference → function parameter
 
+----------------------Function as object or first class citizen ----------------------------------------
 
-  
+🔹 Function as an Object in JavaScript : 
+
+
+✅ 1️⃣ Function Assigned to a Variable
+🔹 Syntax
+let variableName = function() {
+  // function body
+};
+
+🔹 Example
+let greet = function () {
+  return "Hello Ajay";
+};
+
+console.log(greet());
+
+🔹 Output
+Hello Ajay
+
+🔹 Explanation
+
+Function is stored in a variable
+
+Variables can store objects
+
+Hence, function is treated as an object
+
+✅ 2️⃣ Function Has Properties
+🔹 Syntax
+functionName.propertyName = value;
+
+🔹 Example
+function study() {
+  console.log("Studying");
+}
+
+study.subject = "Math";
+
+console.log(study.subject);
+
+🔹 Output
+Math
+
+🔹 Explanation
+
+Properties can be added dynamically
+
+Only objects can have properties
+
+So, function is an object
+
+✅ 3️⃣ Function Passed as Argument (Callback)
+🔹 Syntax
+function fn(callback) {
+  callback();
+}
+
+🔹 Example
+function sayHello() {
+  console.log("Hello");
+}
+
+function execute(fn) {
+  fn();
+}
+
+execute(sayHello);
+
+🔹 Output
+Hello
+
+🔹 Explanation
+
+Function passed like a value
+
+Known as callback function
+
+Proves first-class object behavior
+
+✅ 4️⃣ Function Returned from Another Function
+🔹 Syntax
+function outer() {
+  return function inner() {};
+}
+
+🔹 Example
+function outer() {
+  return function inner() {
+    return "Inner Function";
+  };
+}
+
+let result = outer();
+console.log(result());
+
+🔹 Output
+Inner Function
+
+🔹 Explanation
+
+Function returned like an object
+
+Enables closures
+
+Shows functions behave as objects
+
+✅ 5️⃣ Function Has Built-in Properties
+🔹 Syntax
+functionName.property
+
+🔹 Example
+function demo(a, b) {}
+
+console.log(demo.length);
+console.log(demo.name);
+
+🔹 Output
+2
+demo
+
+🔹 Explanation
+
+.length → number of parameters
+
+.name → function name
+
+Functions contain metadata like objects
+
+✅ 6️⃣ Function Has Methods (call())
+🔹 Syntax
+functionName.call(object, args);
+
+🔹 Example
+function show(city) {
+  return this.name + " from " + city;
+}
+
+let person = { name: "Ajay" };
+
+console.log(show.call(person, "Delhi"));
+
+🔹 Output
+Ajay from Delhi
+
+🔹 Explanation
+
+.call() is an object method
+
+Function borrows context using this
+
+Confirms function behaves as object
+
+📌 FINAL INTERVIEW ONE-LINE ANSWER
+
+In JavaScript, functions are first-class objects. They can be assigned to variables, have properties and methods, be passed as arguments, and returned from other functions.
+
+
+--------------------------🔹 Object-Oriented Programming (OOP) in JavaScript -----------------------------------------------
+
+✅ What is OOP?
+
+Object-Oriented Programming is a programming paradigm that organizes code using objects that contain data (properties) and behavior (methods).
+
+JavaScript supports OOP using:
+
+Objects
+
+Constructor functions
+
+Prototypes
+
+ES6 Classes (syntactic sugar)
+
+🔥 Four Pillars of OOP in JavaScript
+1️⃣ Encapsulation
+🔹 Definition
+
+Binding data and methods together inside a single unit (object).
+
+🔹 Syntax / Example
+class Student {
+  constructor(name, grade) {
+    this.name = name;
+    this.grade = grade;
+  }
+
+  study() {
+    console.log(this.name + " is studying");
+  }
+}
+
+let s1 = new Student("Ajay", "A");
+s1.study();
+
+🔹 Output
+Ajay is studying
+
+🔹 Explanation
+
+Data (name, grade) and behavior (study) are wrapped together
+
+Accessed using object reference
+
+2️⃣ Abstraction
+🔹 Definition
+
+Hiding implementation details and showing only essential features.
+
+🔹 Example
+class Car {
+  start() {
+    this.#engineOn();
+    console.log("Car started");
+  }
+
+  #engineOn() {
+    console.log("Engine running");
+  }
+}
+
+let car = new Car();
+car.start();
+
+🔹 Output
+Engine running
+Car started
+
+🔹 Explanation
+
+User interacts only with start()
+
+Internal method #engineOn() is hidden
+
+3️⃣ Inheritance
+🔹 Definition
+
+One class acquiring properties and methods of another class.
+
+🔹 Syntax / Example
+class Person {
+  greet() {
+    console.log("Hello");
+  }
+}
+
+class Student extends Person {
+  study() {
+    console.log("Student is studying");
+  }
+}
+
+let s = new Student();
+s.greet();
+s.study();
+
+🔹 Output
+Hello
+Student is studying
+
+🔹 Explanation
+
+Student inherits Person
+
+Code reusability achieved
+
+4️⃣ Polymorphism
+🔹 Definition
+
+Same method name, different behavior.
+
+🔹 Example
+class Animal {
+  sound() {
+    console.log("Animal sound");
+  }
+}
+
+class Dog extends Animal {
+  sound() {
+    console.log("Dog barks");
+  }
+}
+
+let a = new Animal();
+let d = new Dog();
+
+a.sound();
+d.sound();
+
+🔹 Output
+Animal sound
+Dog barks
+
+🔹 Explanation
+
+Method overriding
+
+Same method behaves differently
+
+🔹 Constructor Function (Before ES6)
+function Student(name) {
+  this.name = name;
+}
+
+Student.prototype.study = function () {
+  console.log(this.name + " is studying");
+};
+
+let s1 = new Student("Ajay");
+s1.study();
+
+🔹 Prototype-Based OOP (Core JS Concept)
+let person = {
+  greet() {
+    console.log("Hello");
+  }
+};
+
+let student = Object.create(person);
+student.greet();
+
+📌 Interview One-Line Answer
+
+JavaScript supports object-oriented programming using objects, prototypes, and ES6 classes, implementing encapsulation, abstraction, inheritance, and polymorphism.
+
