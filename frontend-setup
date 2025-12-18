@@ -1,0 +1,445 @@
+🔗 React (Vite) + Spring Boot Integration — Step-by-Step
+-----------------------------------------------------------
+🧠 High-Level Flow (Understand First)
+-------------------------------------------------
+React (localhost:5173)
+   ↓ HTTP (Axios / Fetch)
+Spring Cloud Gateway (localhost:5555)
+   ↓
+Auth / Property / Other Microservices
+
+✅ STEP 1: Confirm Backend Is Working (VERY IMPORTANT)
+
+Before touching React, verify backend APIs.
+
+🔍 Test using Postman / Browser
+
+Example:
+
+POST http://localhost:5555/auth/api/v1/auth/login
+
+
+Expected:
+
+Status: 200 OK
+
+Response contains JWT token
+
+⚠️ If backend doesn’t work here → frontend will never work
+
+✅ STEP 2: Enable CORS in Backend (Spring Boot / Gateway)
+✔️ Gateway (Best place for CORS)
+server:
+  port: 5555
+
+spring:
+  application:
+    name: api-gateway-1
+
+  cloud:
+    gateway:
+      routes:
+        - id: authservice-api
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/(?<segment>.*), /${segment}
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins:
+              - http://localhost:5173
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowed-headers: "*"
+            allow-credentials: true
+
+
+🧠 Focus:
+
+Frontend origin must match exactly (5173)
+
+Gateway handles CORS → microservices stay clean
+
+✅ STEP 3: Create React Project Using Vite
+npm create vite@latest my-react-app
+cd my-react-app
+npm install
+npm run dev
+
+
+Runs at:
+
+http://localhost:5173
+
+✅ STEP 4: Install Axios (Standard in Industry)
+npm install axios
+
+✅ STEP 5: Create Axios Configuration (IMPORTANT)
+
+📁 src/api/axiosConfig.js
+
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "http://localhost:5555/auth", // Gateway URL
+  withCredentials: true,
+});
+
+// Attach JWT automatically
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+export default api;
+
+
+🎯 Why this matters
+
+Centralized API config
+
+JWT automatically added
+
+Clean code everywhere else
+
+✅ STEP 6: Call Backend from React (Login Example)
+
+📁 src/components/Login.jsx
+
+import { useState } from "react";
+import api from "../api/axiosConfig";
+
+function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const res = await api.post("/api/v1/auth/login", {
+        username,
+        password
+      });
+
+      console.log("JWT Token:", res.data.data);
+      localStorage.setItem("token", res.data.data);
+
+      alert("Login successful");
+    } catch (err) {
+      console.error(err);
+      alert("Login failed");
+    }
+  };
+
+  return (
+    <div>
+      <input placeholder="Username" onChange={e => setUsername(e.target.value)} />
+      <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  );
+}
+
+export default Login;
+
+✅ STEP 7: Verify Connection (VERY IMPORTANT)
+🔎 Browser DevTools
+
+Open Network tab
+
+Click Login
+
+Check:
+
+Request URL → http://localhost:5555/auth/...
+
+Status → 200
+
+Response → JWT token
+
+🔐 Check Token
+localStorage.getItem("token");
+
+
+✔ If token exists → connection successful
+
+✅ STEP 8: Call Secured API (JWT Validation)
+
+Example:
+
+api.get("/api/v1/user/profile")
+  .then(res => console.log(res.data))
+  .catch(err => console.error(err));
+
+
+Backend:
+
+@PreAuthorize("hasRole('USER')")
+@GetMapping("/profile")
+public User profile() { ... }
+
+✅ STEP 9: Common Errors & Fixes (INTERVIEW GOLD)
+Error	Cause	Fix
+404	Wrong path	Match gateway rewrite path
+CORS error	Missing config	Add gateway CORS
+401	Token missing	Axios interceptor
+ERR_CONNECTION_REFUSED	Backend down	Start Gateway
+Token not visible	Wrong response field	console.log(res.data)
+✅ STEP 10: Production Best Practices (VERY IMPORTANT)
+
+✔ Use .env
+
+VITE_API_BASE_URL=http://localhost:5555/auth
+
+
+✔ Update axios:
+
+baseURL: import.meta.env.VITE_API_BASE_URL
+
+
+✔ Never hardcode URLs
+
+🎯 WHAT TO FOCUS ON (EXAM / INTERVIEW)
+
+✅ Gateway handles CORS
+✅ Axios interceptor for JWT
+✅ Token stored in localStorage
+✅ Frontend only talks to Gateway
+✅ Proper error handling
+
+🔥 Interview Answer (You Can Say This)
+“We connect React with Spring Boot through a centralized API Gateway.
+React uses Axios with interceptors to attach JWT tokens.
+CORS is handled at the gateway level, and secure APIs are accessed using Bearer tokens.”
+==========================================================================================================================================
+
+
+🔐 1️⃣ Protected Routes in React (JWT Based)
+🎯 Goal
+
+Prevent access to pages unless the user is logged in.
+
+✅ Step 1: Create Auth Utility
+
+📁 src/utils/auth.js
+
+export const isAuthenticated = () => {
+  return !!localStorage.getItem("token");
+};
+
+export const getUserRole = () => {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+
+  const payload = JSON.parse(atob(token.split(".")[1]));
+  return payload.role;
+};
+
+✅ Step 2: Create ProtectedRoute Component
+
+📁 src/routes/ProtectedRoute.jsx
+
+import { Navigate } from "react-router-dom";
+import { isAuthenticated } from "../utils/auth";
+
+const ProtectedRoute = ({ children }) => {
+  return isAuthenticated() ? children : <Navigate to="/login" />;
+};
+
+export default ProtectedRoute;
+
+✅ Step 3: Use in Routes
+
+📁 src/App.jsx
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+
+✔ Now /dashboard is JWT-protected
+
+🧭 2️⃣ Role-Based UI (ADMIN / USER)
+🎯 Goal
+
+Show UI elements based on user role.
+
+✅ Step 1: Decode Role from JWT
+
+Already done:
+
+getUserRole(); // ROLE_ADMIN or ROLE_USER
+
+✅ Step 2: RoleBasedRoute
+
+📁 src/routes/RoleBasedRoute.jsx
+
+import { Navigate } from "react-router-dom";
+import { getUserRole } from "../utils/auth";
+
+const RoleBasedRoute = ({ role, children }) => {
+  const userRole = getUserRole();
+
+  if (userRole !== role) {
+    return <Navigate to="/unauthorized" />;
+  }
+
+  return children;
+};
+
+export default RoleBasedRoute;
+
+✅ Step 3: Use It
+<Route
+  path="/admin"
+  element={
+    <ProtectedRoute>
+      <RoleBasedRoute role="ROLE_ADMIN">
+        <AdminDashboard />
+      </RoleBasedRoute>
+    </ProtectedRoute>
+  }
+/>
+
+✅ Step 4: Role-Based UI Rendering
+{getUserRole() === "ROLE_ADMIN" && (
+  <button>Delete Property</button>
+)}
+
+
+✔ UI + route + backend all secured
+
+🧪 3️⃣ End-to-End Auth Flow Diagram (VERY IMPORTANT)
+🔁 Complete Flow
+[ React (Vite) ]
+        |
+        | 1️⃣ Login Request (username, password)
+        ↓
+[ API Gateway :5555 ]
+        |
+        ↓
+[ Auth Service ]
+        |
+        | 2️⃣ Validate User
+        | 3️⃣ Generate JWT
+        ↓
+[ JWT Token Returned ]
+        |
+        ↓
+[ React ]
+  - Store token in localStorage
+  - Attach token via Axios Interceptor
+        |
+        | 4️⃣ Secured API Call
+        ↓
+[ API Gateway ]
+        |
+        | 5️⃣ JWT Filter Validation
+        ↓
+[ Microservice ]
+        |
+        | 6️⃣ Return Secured Data
+        ↓
+[ React UI Updated ]
+
+🧠 Key Security Points
+
+✔ Password hashed (BCrypt)
+✔ JWT stateless
+✔ Gateway validates token
+✔ Role-based authorization
+
+🚀 4️⃣ Deploy React + Spring Boot (PRODUCTION READY)
+🔵 OPTION 1: React + Spring Boot on Same Server (Recommended)
+✅ Step 1: Build React App
+npm run build
+
+
+Output:
+
+dist/
+
+✅ Step 2: Copy React Build to Spring Boot
+spring-boot-app
+ └── src/main/resources/static
+     └── index.html
+     └── assets/
+
+✅ Step 3: Configure Controller
+@Controller
+public class FrontendController {
+
+  @GetMapping("/{path:[^\\.]*}")
+  public String forward() {
+    return "forward:/index.html";
+  }
+}
+
+
+✔ Single deployment
+✔ Same domain
+✔ No CORS issues
+
+🔵 OPTION 2: Separate Deployment (Cloud)
+🔹 React
+
+Netlify / Vercel / AWS S3
+
+🔹 Backend
+
+AWS EC2 / Docker / Kubernetes
+
+Update .env:
+
+VITE_API_BASE_URL=https://api.myapp.com/auth
+
+🐳 Docker (Industry Standard)
+React Dockerfile
+FROM node:18
+WORKDIR /app
+COPY . .
+RUN npm install && npm run build
+CMD ["npx", "serve", "dist"]
+
+Spring Boot Dockerfile
+FROM openjdk:17
+COPY target/app.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+🎯 FINAL INTERVIEW SUMMARY (MEMORIZE THIS)
+
+“We secure React routes using ProtectedRoute and RoleBasedRoute.
+JWT is stored in localStorage and attached via Axios interceptors.
+Authorization is enforced both on frontend UI and backend APIs. 
+The API Gateway validates tokens. For deployment, React is either bundled inside Spring Boot or deployed separately using Docker.”
