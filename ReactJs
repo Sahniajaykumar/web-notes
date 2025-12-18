@@ -166,6 +166,25 @@ Open the browser at:
 ----------------------
 http://localhost:5173
 
+Note : 
+To implement css , link index.css file into index.html and main.jsx 
+like this : 
+1. html.index : <link rel="stylesheet" href="/my-first-react-project/src/index.css">
+
+2. main.jsx   : import "./index.css";
+
+3. remove default content element from App.jsx and keep only this below like code to write your content 
+
+function App() {
+  return (
+    <>
+       
+    </>
+  );
+}
+
+export default App;
+
 -------------------------------------
 Alternative (direct command)
 ------------------------------------
@@ -423,4 +442,25 @@ App.jsx
 Other Components
    ↓
 CSS Files
+
+---------------------------------
+📁 React (Vite) Folder Structure
+-------------------------------
+my-react-app/
+│
+├── index.html          ← ONLY basic HTML
+│
+├── src/
+│   │
+│   ├── main.jsx        ← JavaScript (React entry point)
+│   │
+│   ├── App.jsx         ← HTML (JSX) + JavaScript
+│   │
+│   ├── index.css       ← Global CSS
+│   │
+│   ├── App.css         ← CSS for App.jsx
+│   │
+│   └── components/
+│         ├── Header.jsx    ← HTML (JSX) + JavaScript
+│         └── Header.css    ← CSS for Header.jsx
 
