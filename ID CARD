@@ -1,0 +1,173 @@
+ID-CARD
+=============================
+App.jsx
+-----------
+import profilePic from "./assets/profile.jpeg";
+
+export default function App() {
+  return (
+    <div className="page">
+      <div className="id-card">
+        <h2 className="card-title">Card belongs to Ajay</h2>
+
+        <img src={profilePic} alt="Profile" className="profile-pic" />
+
+        <div className="details">
+          <div className="row">
+            <span className="label">Name</span>
+            <span className="value">Ajay Kumar</span>
+          </div>
+
+          <div className="row">
+            <span className="label">Role</span>
+            <span className="value">Java Developer</span>
+          </div>
+
+          <div className="row">
+            <span className="label">Experience</span>
+            <span className="value">2.7 Years</span>
+          </div>
+
+          <div className="row">
+            <span className="label">Location</span>
+            <span className="value">India 🇮🇳</span>
+          </div>
+        </div>
+
+        <div className="badge">✔ Verified Developer</div>
+      </div>
+    </div>
+  );
+}
+
+index.css
+-----------
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* PAGE CENTER */
+.page {
+  min-height: 100vh;
+  background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ID CARD */
+.id-card {
+  width: 320px;
+  padding: 30px;
+  background: linear-gradient(135deg, #111, #1c1c1c);
+  border-radius: 20px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+  border: 2px solid aqua;
+  animation: pop 0.8s ease-in-out;
+}
+
+/* TITLE */
+.card-title {
+  color: aqua;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* PROFILE IMAGE */
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid aqua;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+/* DETAILS */
+.details {
+  margin-top: 20px;
+  text-align: left;
+  /* ⭐ REQUIRED */
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 120px auto;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.label {
+  font-weight: 600;
+  color: aqua;
+  position: relative;
+}
+
+.label::after {
+  content: " :";
+  position: absolute;
+  right: 0;
+}
+
+.value {
+  padding-left: 12px;
+  color: white;
+}
+
+
+/* BADGE */
+.badge {
+  margin-top: 20px;
+  background: aqua;
+  color: black;
+  padding: 8px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* ANIMATION */
+@keyframes pop {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+main.jsx
+----------
+
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import "./index.css";
+
+createRoot(document.getElementById("root")).render(<App />);
+
+index.html
+------------
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my-card</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
