@@ -1126,3 +1126,23 @@ student.greet();
 
 JavaScript supports object-oriented programming using objects, prototypes, and ES6 classes, implementing encapsulation, abstraction, inheritance, and polymorphism.
 
+
+-------------------🚀 Learn How to Take User Input in JavaScript ?--------------------------------
+
+Taking input from the user is one of the first and most important steps when learning programming.
+ Here’s how you can do it easily in JavaScript 👇
+
+💻 In Browser:
+
+let name = prompt("Enter your name:");
+alert("Hello, " + name + "!");
+
+⚙️ In Node.js (VS Code / Terminal):
+
+First install the package using : npm install prompt-sync
+
+const input = require("prompt-sync")();
+let name = input("Enter your name: ");
+console.log("Hello, " + name + "!");
+
+Run program using : node filename.js
