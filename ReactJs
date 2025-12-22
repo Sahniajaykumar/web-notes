@@ -454,9 +454,10 @@ Q: What is a Component in React?
 --> It represents a part of the user interface and controls how that part looks and behaves.
 
 👉 In simple words:
-       Components are the building blocks of a React application.
+       Components are the building blocks of a React application or function that returns jsx.
+       --> component must be named in PascalCase(capital letter at start).
 
-Q: Why Components Are Important?
+Q: Advantages or Why Components Are Important?
 ________________________________________
 From an interview point of view, emphasize these 5 key benefits (easy to remember 😄):
 
