@@ -485,12 +485,63 @@ function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
+Q: How to create Functional Components ?
+=============================================
 
-Key points to mention in interview:
--------------------------------------
---> Simple and lightweight
---> Use useState, useEffect, etc.
---> Faster and easier to read
+1️⃣ Create a Component (Function Component) :
+-----------------------------------------------
+function Card() {
+  return <h1>Hello from Card Component</h1>;
+}
+export default Card;
+
+2️⃣ Use the Component : should use or call or render the component like this <Card/>
+--------------------------------
+import Card from "./Card";
+
+function App() {
+  return <Card />;
+}
+export default App;
+
+Example : 
+
+import { createRoot } from "react-dom/client";
+import reactLogo from "./assets/react.svg";
+import "./index.css";
+
+function CardComponent(){
+  return (    
+    <div className="card">
+    <h1 className="heding">
+      <img className="logo" src={reactLogo} alt="images not found" />
+      What is JSX ?
+    </h1>
+    <ul className="listitems">
+      <li>Write HTML inside JavaScript.</li>
+    </ul>
+    <h1 className="heding">
+      <img className="logo" src={reactLogo} alt="React Logo" />
+      Rules of JSX
+    </h1>
+
+    <ul className="listitems">
+      <li>Must enclose JSX in a root element</li>
+      <li>Close all tags properly</li>
+      <li>Use className instead of class</li>
+      <li>Use camelCase for attributes</li>
+      <li>Use curly braces for JavaScript</li>
+    </ul>
+  </div>
+    )  
+}
+createRoot(document.getElementById("root")).render(<CardComponent/>);
+
+⭐ Key Interview Point :
+   --> A React component is a reusable JavaScript function that returns JSX.
+   --> Simple and lightweight
+   --> Use useState, useEffect, etc.
+   --> Faster and easier to read
 
 
 2. Class Components (Older Approach , Depricated)
