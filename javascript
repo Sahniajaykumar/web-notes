@@ -1146,3 +1146,215 @@ let name = input("Enter your name: ");
 console.log("Hello, " + name + "!");
 
 Run program using : node filename.js
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+📌 What is DOM (Document Object Model)?
+
+The DOM is a programming interface provided by the browser that represents an HTML (or XML) document as a tree of objects.
+
+👉 It allows JavaScript to:
+--> Read HTML elements
+--> Modify content and styles
+--> Add/remove elements
+--> Handle user interactions (events)
+
+🔑 Important:
+The DOM is not JavaScript — it is a Web API provided by the browser.
+
+📄 HTML              vs             DOM
+------------------------------------------------
+HTML                                DOM
+Static text file          |         In-memory object representation                     
+Written by developer      |         Created by browser after parsing HTML
+Loaded once               |         Dynamic and mutable
+
+Example:
+<p id="msg">Hello</p>
+
+DOM representation:
+--------------------
+Document
+ └── html
+     └── body
+         └── p (id="msg")
+             └── "Hello"
+
+🌳 DOM Tree Structure (Node Hierarchy)
+------------------------------------------------
+--> Every part of HTML becomes a node in the DOM.
+
+Types of Nodes: 
+Node Type               |              	Example
+Document Node	          |                document
+Element Node	          |                <div>, <p>
+Text Node	              |                Text inside elements
+Attribute Node	        |                id, class
+
+🧠 How Browser Builds DOM (Critical for Performance)
+--> Browser receives HTML
+--> Parses HTML → builds DOM Tree
+--> Parses CSS → builds CSSOM
+--> DOM + CSSOM → Render Tree
+--> Layout & Paint
+
+⚠️ DOM manipulation is expensive because it may trigger:
+--> Reflow (layout recalculation)
+--> Repaint (visual redraw)
+
+🔍 Accessing DOM Elements
+-------------------------------
+1️⃣ By ID
+document.getElementById("title");
+
+2️⃣ By Class
+document.getElementsByClassName("box");
+
+3️⃣ By Tag
+document.getElementsByTagName("p");
+
+4️⃣ Modern Selectors (Recommended)
+document.querySelector(".box");
+document.querySelectorAll("p");
+
+
+✔ querySelector → first match
+✔ querySelectorAll → NodeList
+
+✏️ Reading & Modifying DOM
+----------------------------------
+Change Text
+element.innerText = "Hello";
+element.textContent = "Hello";
+element.innerHTML = "<b>Hello</b>";
+
+🔑 Differences:
+
+innerText → respects CSS
+textContent → faster, raw text
+innerHTML → parses HTML (security risk if misused)
+
+🎨 Changing Styles & Classes
+----------------------------------
+Inline Style
+element.style.color = "red";
+
+Class Manipulation (Best Practice)
+element.classList.add("active");
+element.classList.remove("active");
+element.classList.toggle("active");
+
+➕ Creating & Removing Elements
+-------------------------------------
+Create Element
+const div = document.createElement("div");
+div.innerText = "New Div";
+document.body.appendChild(div);
+
+Remove Element
+div.remove();
+
+🧭 DOM Traversal
+---------------------
+Move around the DOM tree.
+
+element.parentNode
+element.children
+element.firstElementChild
+element.lastElementChild
+element.nextElementSibling
+element.previousElementSibling
+
+Note: Used heavily in dynamic UI logic
+------------------------------------------------------------------------------------------------------------------------------------------
+
+🖱️ Event Handling (Very Important)
+----------------------------------------
+Add Event Listener
+-------------------
+button.addEventListener("click", () => {
+  alert("Clicked");
+});
+
+Event Object
+-----------------
+button.addEventListener("click", (event) => {
+  console.log(event.target);
+});
+
+🔁 Event Propagation
+
+1️⃣ Event Bubbling (Default)
+--> Event flows child → parent
+
+2️⃣ Event Capturing
+--> Event flows parent → child
+
+parent.addEventListener("click", handler, true); // capture
+
+🎯 Event Delegation (Interview Favorite ⭐)
+--> Instead of adding listeners to multiple elements, add one listener to parent.
+
+ul.addEventListener("click", (e) => {
+  if (e.target.tagName === "LI") {
+    console.log(e.target.innerText);
+  }
+});
+
+
+✔ Better performance
+
+✔ Used in React internally
+
+🚀 DOM Performance Optimization
+---------------------------------
+❌ Bad:
+
+for (...) {
+  document.body.appendChild(el);
+}
+
+
+✅ Good:
+----------
+const fragment = document.createDocumentFragment();
+fragment.appendChild(el);
+document.body.appendChild(fragment);
+
+Best Practices:
+--> Minimize DOM access
+--> Batch updates
+--> Use event delegation
+--> Avoid frequent layout changes
+
+⚛️ DOM            vs           Virtual DOM (React Angle)
+-----------------------------------------------------------------
+DOM	                            Virtual DOM
+Real browser tree	     |        JS object copy
+Slow updates	         |        Fast diffing
+Direct manipulation	   |        Efficient re-render
+Used by JS	           |        Used by React
+
+Note: 👉 React updates Virtual DOM, then syncs minimal changes to real DOM.
+
+🧪 Common Interview Questions
+Q1: Is DOM part of JavaScript?
+
+❌ No
+✔ It’s a Browser API
+
+Q2: Why is DOM manipulation slow?
+
+✔ Causes reflow & repaint
+
+Q3: Difference between innerText and textContent?
+
+✔ textContent is faster and ignores styles
+
+Q4: What is event delegation?
+
+✔ Handling events at parent using bubbling
+
+✅ Final Summary (One-Liner for Interview)
+
+“The DOM is a browser-provided tree-like object model of an HTML document that allows JavaScript to dynamically read, modify, and handle user interactions efficiently.”
