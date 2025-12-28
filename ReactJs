@@ -595,3 +595,147 @@ Button → Component
 Form → Component
 
 Each part works independently but together forms the complete app.
+
+🔹 What are Props in React?
+==================================
+--> Props are immutable data passed from parent to child components to control their behavior and appearance.
+
+🔹 Why Props Are Needed : 
+
+Without props:
+--> Components would be static
+--> Code duplication increases
+--> Reusability is lost
+
+With props:
+--> Same component can display different data
+--> Logic and UI become modular
+--> Follows component-based architecture
+
+Example:
+1. <ProfileCard name="Ajay" role="React Developer" />
+2. <ProfileCard name="Rahul" role="Java Developer" />
+
+🔹 How Props Work (Data Flow)
+--> React follows one-way data binding:
+
+|--------------------|
+|Parent Component    |
+|      ↓ (props)     |
+|Child Component     |
+|--------------------|
+
+Step1: Parent sends data
+
+Step2: Child receives data
+--> Child cannot modify props
+
+Note: 
+This ensures:
+--> Predictable behavior
+--> Easy debugging
+--> Better performance
+
+🔹 Basic Example (Interview Friendly)
+----------------------------------------
+1. Parent Component
+------------------
+<ProfileCard myName="Ajay" role="React Developer" />
+
+2. Child Component
+------------------
+function ProfileCard(props) {
+  return (
+    <h1>{props.myName} - {props.role}</h1>
+  );
+}
+
+🔹 Props Are Immutable (VERY IMPORTANT)
+-------------------------------------------
+❌ This is NOT allowed:
+
+props.myName = "Rahul"; // ❌
+
+
+✅ Correct way:
+--> Props should only be read
+--> If data must change → use state
+
+Interview line: Props are immutable; state is mutable.
+
+
+🔹 Props Destructuring (Best Practice)
+----------------------------------------
+Instead of: props.myName
+
+Use:
+function ProfileCard({ myName, role }) {
+  return <h1>{myName} - {role}</h1>;
+}
+✔ Cleaner code
+✔ Easier readability
+✔ Preferred in professional projects
+
+🔹 Passing Different Types of Props
+-------------------------------------
+1. String
+<Comp title="Hello" />
+
+2. Number
+<Comp age={25} />
+
+3. Boolean
+<Comp isActive={true} />
+
+4. Array
+<Comp skills={["React", "JS", "CSS"]} />
+
+5. Object
+<Comp user={{ name: "Ajay", role: "Developer" }} />
+
+6. Function (Callback)
+<Comp onClick={handleClick} />
+
+Note: Passing functions enables child-to-parent communication.
+
+🔹 Default Props (Fallback Values)
+--------------------------------------
+--> Used when parent does not send a value.
+
+function ProfileCard({ role = "Frontend Developer" }) {
+  return <h3>{role}</h3>;
+}
+
+✔ Prevents undefined errors
+✔ Improves robustness
+
+🔹 Props vs State (Common Interview Question)
+-------------------------------------------------
+
+| Props                  | State                        |
+| ---------------------- | ---------------------------- |
+| Read-only              | Mutable                      |
+| Passed from parent     | Managed within component     |
+| Used for configuration | Used for dynamic behavior    |
+| Cannot be modified     | Can be updated with setState |
+
+🔹 Props vs Context API (Advanced)
+------------------------------------------
+
+| Props                   | Context              |
+| ----------------------- | -------------------- |
+| Passed manually         | Globally accessible  |
+| Can cause prop drilling | Solves prop drilling |
+| Simple & explicit       | Good for large apps  |
+
+Note: Use props for local data, context for global data.
+
+🔹 Props and Reusability (Key Interview Point)
+--------------------------------------------------
+Props allow:
+--> Same component → multiple uses
+--> UI separation from data
+--> Scalable architecture
+   E.g; <ProfileCard {...user} />
+
+
