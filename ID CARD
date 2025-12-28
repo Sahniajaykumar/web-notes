@@ -171,3 +171,110 @@ index.html
   </body>
 </html>
 
+======================================================================================================================================
+
+(2). Second card 
+
+ProfileCard.jsx
+------------------------
+import ProfilePhoto from "../assets/profile.jpeg"
+import "./ProfileCard.css"
+
+export default function ProfileCard(){
+return(
+    <div className= "profile-card">
+        <img className="my-photo" src={ProfilePhoto} alt="pic not found"/>
+
+        <h1 className="my-name">Ajay kumar</h1>
+
+        <h3 className="title">React Developer</h3>
+
+        <p className="bio">Passinate React Developer with 5 years of experience in creating responsive and user-friendly websites</p>
+
+        <div className="social-links">
+            <a href="">Twitter</a>
+            <a href="">Instagram</a>
+            <a href="">Linkedin</a>
+        </div>
+    </div>
+);
+}
+
+2. ProfileCard.css
+--------------------
+
+body{
+    background-color: #111;
+}
+
+.profile-card{
+    width: 380px;
+    background-color: #111;
+    padding: 40px 35px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-family: "Inter",sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    margin: 200px auto;
+    box-shadow: 10px 20px 100px rgb(66, 66, 255);
+}
+.my-photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 25px;
+    border: 3px solid rgba(255, 255, 255, 0.18);
+}
+.my-name{
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.title{
+    font-size: 20px;
+    font-weight: 400;
+    color: #3fa9f5;
+    margin-bottom: 25px;
+}
+.bio{
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.85;
+    margin-bottom: 30px;
+}
+.social-links{
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+}
+.social-links a{
+    color: #3fa9f5;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+3. App.jsx
+----------------
+
+import ProfileCard from "./components/ProfileCard"
+
+ function App() {
+  return <ProfileCard/>
+    
+}
+export default App
+
+4. main.jsx
+----------------
+
+import { createRoot } from "react-dom/client";
+import App from "./App";
+
+createRoot(document.getElementById("root")).render(<App />);
+
+Note : This card is build using component .
+
