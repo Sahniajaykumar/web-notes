@@ -45,3 +45,19 @@ git push -u origin main
 ✔ Push successful
 ✔ Tracking set up
 ✔ Repo is live 🚀
+=========================================================================================================================================
+
+After deploye project if you want to update some feature in your deployed project then again follow this procedure
+
+2️⃣ Staged all files
+git add .
+
+4️⃣ First commit
+git commit -m "first commit"                      // anything message
+
+7️⃣ Pushed to GitHub
+git push -u origin main
+
+✔ Push successful
+✔ Tracking set up
+✔ Repo is live 🚀
