@@ -1,0 +1,47 @@
+✅ What You Successfully Did (Step-by-Step)
+1️⃣ Initialized Git
+git init
+
+
+✔ Repository created correctly
+
+2️⃣ Staged all files
+git add .
+
+
+✔ All project files added
+⚠ LF → CRLF warnings → harmless on Windows
+
+3️⃣ Verified staging
+git status
+
+
+✔ Files correctly staged
+✔ No mistakes
+
+4️⃣ First commit
+git commit -m "first commit"
+
+
+✔ Clean root commit
+✔ 15 files committed
+
+5️⃣ Set main branch
+git branch -M main
+
+
+✔ Correct branch naming
+
+6️⃣ Connected to GitHub
+git remote add origin https://github.com/Sahniajaykumar/card-components.git
+
+
+✔ Remote added correctly
+
+7️⃣ Pushed to GitHub
+git push -u origin main
+
+
+✔ Push successful
+✔ Tracking set up
+✔ Repo is live 🚀
