@@ -56,8 +56,15 @@ git add .
 git commit -m "first commit"                      // anything message
 
 7️⃣ Pushed to GitHub
+
 git push -u origin main
 
 ✔ Push successful
 ✔ Tracking set up
 ✔ Repo is live 🚀
+========================================================================================================================================
+
+Netlify : Production ready deploy
+
+1. npm run build
+--> one brand new folder(dist) will created , just drag and drop it to netlify
