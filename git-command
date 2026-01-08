@@ -103,6 +103,22 @@ git push -u origin main
 ✔ Tracking set up
 ✔ Repo is live 🚀
 ========================================================================================================================================
+GitHub repository already has commits : 
+----------------------------------------
+
+Step 1: Pull remote changes first
+git pull origin main --allow-unrelated-histories
+
+--> 📌 --allow-unrelated-histories is needed because:
+--> Local repo and remote repo were created separately
+
+Step 2: Resolve merge (if asked)
+git add .
+git commit -m "Merge remote and local changes"
+
+Step 3: Push again
+git push -u origin main
+=========================================================================================================================================
 
 Netlify : Production ready deploy
 
