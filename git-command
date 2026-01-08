@@ -1,3 +1,89 @@
+🔹 Basic
+
+Q1. What is Git?
+➡ Distributed version control system to track code changes.
+
+Q2. Git vs GitHub?
+➡ Git = tool, GitHub = hosting platform.
+
+Q3. What is a repository?
+➡ A place where Git stores project history.
+
+🔹 Intermediate
+
+Q4. Difference between git fetch and git pull?
+    fetch → downloads only
+    pull → fetch + merge
+
+Q5. What is HEAD?
+➡ Pointer to the current commit.
+
+Q6. What is staging area?
+➡ Intermediate area before commit.
+
+🔹 Advanced
+
+Q7. What is rebase?
+➡ Rewrites commit history to keep it linear.
+
+Q8. What is cherry-pick?
+➡ Apply a specific commit from another branch.
+
+Q9. How to undo a commit?
+git reset --soft HEAD~1
+git reset --hard HEAD~1
+git revert <commit-id>
+
+✅ 2️⃣ Git Rebase vs Merge (VERY IMPORTANT)
+🔹 Conceptual Difference
+| Feature               | Rebase        | Merge       |
+| --------------------- | ------------- | ----------- |
+| History               | Linear        | Branching   |
+| Commits               | Rewritten     | Preserved   |
+| Safe on shared branch | ❌             | ✅           |
+| Used for              | Clean history | Team safety |
+
+🔹 Merge Example
+git checkout main
+git merge feature
+--> 📌 Creates a merge commit
+
+🔹 Rebase Example
+git checkout feature
+git rebase main
+--> 
+📌 Moves feature commits on top of main
+
+✅ 3️⃣ Git Workflow for Teams (Industry Standard)
+---------------------------------------------------
+🔹 Git Flow (Most Used) : 
+main       → production
+develop    → integration
+feature/*  → new features
+release/*  → pre-production
+hotfix/*   → urgent prod fixes
+
+🔹 Feature Workflow
+git checkout develop
+git checkout -b feature/login
+
+git add .
+git commit -m "Add login feature"
+
+git push origin feature/login
+
+--> Create Pull Request
+
+🔹 Pull Request Flow
+Feature branch
+   ↓
+Pull Request
+   ↓
+Code Review
+   ↓
+Merge to develop/main
+========================================================================================================================================
+
 ✅ Following Steps to upload the project into github : 
 ==========================================================
 
