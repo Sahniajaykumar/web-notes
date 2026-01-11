@@ -1,10 +1,13 @@
 ---------------------------🔹 Function in JavaScript-----------------------------------------------------
 
 ✅ What is a Function?
-
-A function is a reusable block of code designed to perform a specific task and can be executed (called) whenever needed.
+--> A function is a reusable block of code designed to perform a specific task and can be executed (called) whenever needed.
 
 1️⃣ Function Declaration
+--> Function is defined using function keyword
+--> Reusable and hoisted
+--> Called using function name
+
 🔹 Syntax
 function functionName(parameters) {
   // code
@@ -14,21 +17,15 @@ function functionName(parameters) {
 function add(a, b) {
   return a + b;
 }
-
 console.log(add(5, 3));
 
-🔹 Output
-8
+🔹 Output : 8
 
-🔹 Explanation
+2️⃣ Function Expression :
+--> Function stored in variable
+--> Not hoisted
+--> Treated as an object 
 
-Function is defined using function keyword
-
-Reusable and hoisted
-
-Called using function name
-
-2️⃣ Function Expression
 🔹 Syntax
 let variable = function(parameters) {
   // code
@@ -38,89 +35,57 @@ let variable = function(parameters) {
 let greet = function(name) {
   return "Hello " + name;
 };
-
 console.log(greet("Ajay"));
 
-🔹 Output
-Hello Ajay
+🔹 Output : Hello Ajay
 
-🔹 Explanation
+3️⃣ Arrow Function (ES6) : 
+--> Shorter syntax
+--> No own this
+--> Used in modern JS
 
-Function stored in variable
-
-Not hoisted
-
-Treated as an object
-
-3️⃣ Arrow Function (ES6)
 🔹 Syntax
 let fn = (params) => expression;
 
 🔹 Example
-let square = (n) => n * n;
-
+let square = (n) => n * n;  // taking an `n` input and producing an output 
 console.log(square(4));
 
-🔹 Output
-16
-
-🔹 Explanation
-
-Shorter syntax
-
-No own this
-
-Used in modern JS
+🔹 Output : 16
 
 4️⃣ Function with Return Value
+--> return sends value back
+--> Function stops execution after return
 🔹 Example
 function multiply(a, b) {
   return a * b;
 }
-
 console.log(multiply(4, 5));
 
-🔹 Output
-20
-
-🔹 Explanation
-
-return sends value back
-
-Function stops execution after return
+🔹 Output : 20
 
 5️⃣ Function Without Return (Void)
+--> No return value
+--> Used for side effects
+
 🔹 Example
 function showMessage() {
   console.log("Welcome");
 }
-
 showMessage();
 
-🔹 Output
-Welcome
-
-🔹 Explanation
-
-No return value
-
-Used for side effects
+🔹 Output : Welcome
 
 6️⃣ Function as an Object
+--> Functions can have properties
+--> Proof that function is an object
+
 🔹 Example
 function demo() {}
 demo.type = "example";
-
 console.log(demo.type);
 
-🔹 Output
-example
-
-🔹 Explanation
-
-Functions can have properties
-
-Proof that function is an object
+🔹 Output : example
 
 7️⃣ Function Passed as Argument (Callback)
 🔹 Example
@@ -131,42 +96,36 @@ function process(fn) {
 function sayHi() {
   console.log("Hi");
 }
-
 process(sayHi);
 
-🔹 Output
-Hi
+🔹 Output : Hi
 
 🔹 Explanation
-
-Function passed as parameter
-
-Used in async & event handling
+--> Function passed as parameter
+--> Used in async & event handling
 
 8️⃣ Function Returning Function
+--> Supports closures
+--> Functional programming concept
+
 🔹 Example
 function outer() {
   return function inner() {
     return "Inner";
   };
 }
-
 let f = outer();
 console.log(f());
 
-🔹 Output
-Inner
-
-🔹 Explanation
-
-Supports closures
-
-Functional programming concept
-
+🔹 Output : Inner
 
 --------------------------🔹 Function Types in JavaScript (Based on Input & Output)-------------------------------------
 
-✅ 1️⃣ No Input & No Output
+✅ 1️⃣ No Input & No Output : 
+--> Function does not take parameters
+--> Function does not return any value
+--> Used for displaying messages or logging
+
 🔹 Syntax
 function functionName() {
   // statements
@@ -176,21 +135,15 @@ function functionName() {
 function greet() {
   console.log("Hello Ajay");
 }
-
 greet();
 
-🔹 Output
-Hello Ajay
+🔹 Output : Hello Ajay
 
-🔹 Explanation
+✅ 2️⃣ No Input but Return Output : 
+--> Function has no parameters
+--> Uses return to send output
+--> Used when output is fixed or internally calculated
 
-Function does not take parameters
-
-Function does not return any value
-
-Used for displaying messages or logging
-
-✅ 2️⃣ No Input but Return Output
 🔹 Syntax
 function functionName() {
   return value;
@@ -200,21 +153,15 @@ function functionName() {
 function getMessage() {
   return "Welcome Ajay";
 }
-
 console.log(getMessage());
 
-🔹 Output
-Welcome Ajay
+🔹 Output : Welcome Ajay
 
-🔹 Explanation
+✅ 3️⃣ Takes Input but No Output (No Return) : 
+--> Function accepts input
+--> Does not return value (undefined)
+--> Used for printing, logging, UI updates
 
-Function has no parameters
-
-Uses return to send output
-
-Used when output is fixed or internally calculated
-
-✅ 3️⃣ Takes Input but No Output (No Return)
 🔹 Syntax
 function functionName(parameters) {
   // logic
@@ -224,21 +171,15 @@ function functionName(parameters) {
 function showSquare(n) {
   console.log(n * n);
 }
-
 showSquare(5);
 
-🔹 Output
-25
-
-🔹 Explanation
-
-Function accepts input
-
-Does not return value (undefined)
-
-Used for printing, logging, UI updates
+🔹 Output : 25
 
 ✅ 4️⃣ Takes Input and Return Output (Most Common)
+--> Function accepts input
+--> Returns processed result
+--> Used for calculations and business logic
+
 🔹 Syntax
 function functionName(parameters) {
   return value;
@@ -248,61 +189,40 @@ function functionName(parameters) {
 function add(a, b) {
   return a + b;
 }
-
 console.log(add(10, 20));
 
-🔹 Output
-30
-
-🔹 Explanation
-
-Function accepts input
-
-Returns processed result
-
-Used for calculations and business logic
+🔹 Output : 30
 
 
 -----------------------------------------🔹 Hoisting in JavaScript------------------------------------------------------
 
 ✅ What is Hoisting?
+--> Hoisting is JavaScript’s default behavior of moving variable and function declarations to the top of their scope before execution.
+--> ⚠️ Only declarations are hoisted, not initializations.
 
-Hoisting is JavaScript’s default behavior of moving variable and function declarations to the top of their scope before execution.
+1️⃣ Function Hoisting (MOST IMPORTANT) : 
+--> Function declarations are fully hoisted
+--> You can call the function before its definition
 
-⚠️ Only declarations are hoisted, not initializations.
-
-1️⃣ Function Hoisting (MOST IMPORTANT)
 🔹 Example
 sayHello();
 
 function sayHello() {
   console.log("Hello Ajay");
 }
-
-🔹 Output
-Hello Ajay
-
-🔹 Explanation
-
-Function declarations are fully hoisted
-
-You can call the function before its definition
+🔹 Output : Hello Ajay
 
 2️⃣ Variable Hoisting with var
 🔹 Example
 console.log(x);
 var x = 10;
 
-🔹 Output
-undefined
+🔹 Output : undefined
 
 🔹 Explanation
-
-var x is hoisted
-
-Initialization (=10) is NOT hoisted
-
-JS treats it as:
+--> var x is hoisted
+--> Initialization (=10) is NOT hoisted
+--> JS treats it as:
 
 var x;
 console.log(x);
@@ -313,28 +233,22 @@ x = 10;
 console.log(a);
 let a = 5;
 
-❌ Output
-ReferenceError: Cannot access 'a' before initialization
+❌ Output : ReferenceError: Cannot access 'a' before initialization
 
 🔹 Explanation
-
-let is hoisted but in Temporal Dead Zone (TDZ)
-
-Cannot access before declaration
+--> let is hoisted but in Temporal Dead Zone (TDZ)
+--> Cannot access before declaration
 
 4️⃣ Hoisting with const
 🔹 Example
 console.log(b);
 const b = 10;
 
-❌ Output
-ReferenceError: Cannot access 'b' before initialization
+❌ Output : ReferenceError: Cannot access 'b' before initialization
 
 🔹 Explanation
-
-Same as let
-
-Must be initialized at declaration
+--> Same as let
+--> Must be initialized at declaration
 
 5️⃣ Function Expression Hoisting (TRICKY)
 🔹 Example
@@ -344,14 +258,11 @@ var sayHi = function () {
   console.log("Hi");
 };
 
-❌ Output
-TypeError: sayHi is not a function
+❌ Output : TypeError: sayHi is not a function
 
 🔹 Explanation
-
-Variable sayHi is hoisted as undefined
-
-Function body is not hoisted
+--> Variable sayHi is hoisted as undefined
+--> Function body is not hoisted
 
 6️⃣ Arrow Function Hoisting
 🔹 Example
@@ -365,12 +276,8 @@ const greet = () => {
 ReferenceError: Cannot access 'greet' before initialization
 
 🔹 Explanation
-
-Arrow functions behave like let/const
-
-Not hoisted like normal functions
-
-
+--> Arrow functions behave like let/const
+--> Not hoisted like normal functions
 
 --------------------------------------------------🔹 Object Creation in JavaScript ?--------------------------------------------------
 
@@ -422,9 +329,8 @@ let obj = new Object();
 obj.name = "Ajay";
 obj.age = 25;
 
-
-❌ Less preferred
-✔️ Interview concept
+--> ❌ Less preferred
+--> ✔️ Interview concept
 
 3️⃣ Constructor Function
   -------------------------
@@ -432,12 +338,10 @@ function Student(name, age) {
   this.name = name;
   this.age = age;
 }
-
 let s1 = new Student("Ajay", 25);
 
-
-✔️ Before ES6
-✔️ Uses new keyword
+--> ✔️ Before ES6
+--> ✔️ Uses new keyword
 
 4️⃣ ES6 Class (Modern Way)
   --------------------------------
@@ -447,12 +351,10 @@ class Student {
     this.age = age;
   }
 }
-
 let s1 = new Student("Ajay", 25);
 
-
-✔️ Clean syntax
-✔️ Industry standard
+--> ✔️ Clean syntax
+--> ✔️ Industry standard
 
 5️⃣ Object.create()
   ------------------------
@@ -465,33 +367,24 @@ let parent = {
 let child = Object.create(parent);
 child.name = "Ajay";
 
-
-✔️ Prototype-based
-✔️ Advanced concept
+--> ✔️ Prototype-based
+--> ✔️ Advanced concept
 
 
 --------------------------------------------🔹 What is Pass by Value in JavaScript?-----------------------------------------------------------
 
-Pass by Value means a copy of the variable’s value is passed to a function.
-Changes made inside the function do NOT affect the original variable.
+--> Pass by Value means a copy of the variable’s value is passed to a function.
+--> Changes made inside the function do NOT affect the original variable.
 
 ✅ Pass by Value Applies To
-
-Primitive data types:
-
-number
-
-string
-
-boolean
-
-null
-
-undefined
-
-symbol
-
-bigint
+--> Primitive data types:
+1. number
+2. string
+3. boolean
+4. null
+5. undefined
+6. symbol
+7. bigint
 
 ✅ Example 1: Pass by Value (Primitive)
 function changeValue(x) {
@@ -507,23 +400,18 @@ console.log("Outside function:", a);
 Inside function: 20
 Outside function: 10
 
-
-✔️ Original value NOT changed
-✔️ a is passed as a copy
+--> ✔️ Original value NOT changed
+--> ✔️ a is passed as a copy
 
 🧠 Memory Explanation
 a = 10   → copy →  x = 10
-
-
-Changing x does not affect a.
+--> Changing x does not affect a.
 
 ❌ Common Confusion
-
-People think JavaScript is pass by reference — ❌ WRONG
+--> People think JavaScript is pass by reference — ❌ WRONG
 
 👉 JavaScript is always pass by value
-
-But for objects, the value passed is a reference (important interview line).
+--> But for objects, the value passed is a reference (important interview line).
 
 🔹 Example 2: Pass by Value with String
 function updateName(name) {
@@ -534,8 +422,7 @@ let student = "Ajay";
 updateName(student);
 console.log(student);
 
-Output
-Ajay
+Output : Ajay
 
 🔥 Objects Case (Interview Trap)
 function updateObj(obj) {
@@ -547,19 +434,14 @@ updateObj(person);
 
 console.log(person.age);
 
-Output
-30
+Output : 30
 
 
 ❓ Why did object change?
-
 ✔️ Because:
-
-A copy of the reference is passed
-
-Both point to the same object in memory
-
-👉 Still pass by value, but value = reference
+--> A copy of the reference is passed
+--> Both point to the same object in memory
+--> 👉 Still pass by value, but value = reference
 
 ❌ Reassigning Object (No Change)
 function changeObj(obj) {
@@ -571,9 +453,7 @@ changeObj(person);
 
 console.log(person.age);
 
-Output
-25
-
+Output : 25
 
 ✔️ Reference changed locally
 ✔️ Original object untouched
@@ -590,22 +470,16 @@ let num = 10;
 increment(num);
 console.log(num);
 
-✅ Answer
-10
+✅ Answer : 10
 
 🎯 Interview Explanation
-
-num is a primitive
-
-A copy of the value is passed
-
-JavaScript is pass by value
-
-Original value remains unchanged
+--> num is a primitive
+--> A copy of the value is passed
+--> JavaScript is pass by value
+--> Original value remains unchanged
 
 🔥 Interview Question 2
-
-What is the output? Explain.
+Q : What is the output? Explain.
 
 function updateName(name) {
   name = "Rahul";
@@ -615,20 +489,15 @@ let student = "Ajay";
 updateName(student);
 console.log(student);
 
-✅ Output
-Ajay
+✅ Output : Ajay
 
 🎯 Explanation
-
-String is immutable
-
-Function receives a copy
-
-Reassignment does not affect original
+--> String is immutable
+--> Function receives a copy
+--> Reassignment does not affect original
 
 🔥 Interview Question 3 (TRICKY 🔥)
-
-JavaScript pass by value or reference?
+Q: JavaScript pass by value or reference?
 
 function updateAge(person) {
   person.age = 30;
@@ -638,16 +507,13 @@ let person = { age: 25 };
 updateAge(person);
 console.log(person.age);
 
-✅ Output
-30
+✅ Output : 30
 
 🎯 Interview-Correct Explanation
-
-JavaScript is pass by value, but the value passed for objects is a reference, so modifying object properties affects the original object.
+--> JavaScript is pass by value, but the value passed for objects is a reference, so modifying object properties affects the original object.
 
 🔥 Interview Question 4 (TRAP QUESTION)
-
-Why doesn’t this change the object?
+Q: Why doesn’t this change the object?
 
 function changePerson(person) {
   person = { age: 40 };
@@ -657,16 +523,12 @@ let p = { age: 25 };
 changePerson(p);
 console.log(p.age);
 
-✅ Output
-25
+✅ Output : 25
 
 🎯 Explanation
-
-Reference is passed by value
-
-Reassigning reference does not affect original
-
-Only property mutation affects original object
+--> Reference is passed by value
+--> Reassigning reference does not affect original
+--> Only property mutation affects original object
 
 🔥 Interview Question 5 (Array Case)
 function addItem(arr) {
@@ -677,16 +539,12 @@ let nums = [1, 2, 3];
 addItem(nums);
 console.log(nums);
 
-✅ Output
-[1, 2, 3, 4]
+✅ Output : [1, 2, 3, 4]
 
 🎯 Explanation
-
-Arrays are objects
-
-Reference copy passed
-
-Mutation reflects outside
+--> Arrays are objects
+--> Reference copy passed
+--> Mutation reflects outside
 
 🔥 Interview Question 6 (Reassignment with Array)
 function replaceArray(arr) {
@@ -697,12 +555,10 @@ let nums = [1, 2, 3];
 replaceArray(nums);
 console.log(nums);
 
-✅ Output
-[1, 2, 3]
+✅ Output : [1, 2, 3]
 
 📌 Final Interview One-Liner (MEMORIZE THIS)
-
-JavaScript is always pass by value. For objects and arrays, the value passed is the reference, which allows modification of their contents but not reassignment.
+--> JavaScript is always pass by value. For objects and arrays, the value passed is the reference, which allows modification of their contents but not reassignment.
 
 🧠 Bonus: If Interviewer Pushes You
 
@@ -713,25 +569,21 @@ A: ❌ No. It is pass by value — object references are passed by value.
 -------------------------pass by references-----------------------------------------------------------
 
   ❌ First, the Truth (Very Important)
-
-JavaScript does NOT support pass by reference.
-JavaScript is ALWAYS pass by value.
+--> JavaScript does NOT support pass by reference.
+--> JavaScript is ALWAYS pass by value.
 
 ⚠️ Interviewers often check whether you know this clearly.
 
 ✅ Then Why Do People Say “Pass by Reference”?
-
-Because objects behave LIKE pass by reference, but technically they are pass by value of reference.
+--> Because objects behave LIKE pass by reference, but technically they are pass by value of reference.
 
 🔥 Interview-Style Explanation
 Interview Question:
-
-Does JavaScript support pass by reference?
+Q: Does JavaScript support pass by reference?
 
 ✅ Correct Answer:
-
-No. JavaScript is always pass by value.
-For objects and arrays, the value passed is a reference to the object, which allows modifying the object’s properties.
+--> No. JavaScript is always pass by value.
+--> For objects and arrays, the value passed is a reference to the object, which allows modifying the object’s properties.
 
 🔹 Example 1: Looks Like Pass by Reference
 function update(obj) {
@@ -743,18 +595,13 @@ update(person);
 
 console.log(person.name);
 
-✅ Output
-Rahul
+✅ Output : Rahul
 
 🎯 Interview Explanation
-
-A copy of the reference is passed
-
-Both point to the same object
-
-Property mutation affects original
-
-👉 People wrongly call this pass by reference
+--> A copy of the reference is passed
+--> Both point to the same object
+-> Property mutation affects original
+--> 👉 People wrongly call this pass by reference
 
 🔹 Example 2: Proof It Is NOT Pass by Reference
 function change(obj) {
@@ -766,16 +613,12 @@ change(person);
 
 console.log(person.name);
 
-✅ Output
-Ajay
+✅ Output : Ajay
 
 🎯 Why?
-
-Reference is passed by value
-
-Reassigning reference affects only local variable
-
-Original object unchanged
+--> Reference is passed by value
+--> Reassigning reference affects only local variable
+--> Original object unchanged
 
 ✔️ If it were pass by reference, this would change the object — but it doesn’t.
 
@@ -803,7 +646,6 @@ copy of reference → function parameter
 
 🔹 Function as an Object in JavaScript : 
 
-
 ✅ 1️⃣ Function Assigned to a Variable
 🔹 Syntax
 let variableName = function() {
@@ -814,19 +656,14 @@ let variableName = function() {
 let greet = function () {
   return "Hello Ajay";
 };
-
 console.log(greet());
 
-🔹 Output
-Hello Ajay
+🔹 Output : Hello Ajay
 
 🔹 Explanation
-
-Function is stored in a variable
-
-Variables can store objects
-
-Hence, function is treated as an object
+--> Function is stored in a variable
+--> Variables can store objects
+--> Hence, function is treated as an object
 
 ✅ 2️⃣ Function Has Properties
 🔹 Syntax
@@ -836,21 +673,16 @@ functionName.propertyName = value;
 function study() {
   console.log("Studying");
 }
-
 study.subject = "Math";
 
 console.log(study.subject);
 
-🔹 Output
-Math
+🔹 Output : Math
 
 🔹 Explanation
-
-Properties can be added dynamically
-
-Only objects can have properties
-
-So, function is an object
+--> Properties can be added dynamically
+--> Only objects can have properties
+--> So, function is an object
 
 ✅ 3️⃣ Function Passed as Argument (Callback)
 🔹 Syntax
@@ -869,16 +701,12 @@ function execute(fn) {
 
 execute(sayHello);
 
-🔹 Output
-Hello
+🔹 Output : Hello
 
 🔹 Explanation
-
-Function passed like a value
-
-Known as callback function
-
-Proves first-class object behavior
+--> Function passed like a value
+--> Known as callback function
+--> Proves first-class object behavior
 
 ✅ 4️⃣ Function Returned from Another Function
 🔹 Syntax
@@ -892,20 +720,15 @@ function outer() {
     return "Inner Function";
   };
 }
-
 let result = outer();
 console.log(result());
 
-🔹 Output
-Inner Function
+🔹 Output : Inner Function
 
 🔹 Explanation
-
-Function returned like an object
-
-Enables closures
-
-Shows functions behave as objects
+--> Function returned like an object
+--> Enables closures
+--> Shows functions behave as objects
 
 ✅ 5️⃣ Function Has Built-in Properties
 🔹 Syntax
@@ -922,12 +745,9 @@ console.log(demo.name);
 demo
 
 🔹 Explanation
-
-.length → number of parameters
-
-.name → function name
-
-Functions contain metadata like objects
+--> .length → number of parameters
+--> .name → function name
+--> Functions contain metadata like objects
 
 ✅ 6️⃣ Function Has Methods (call())
 🔹 Syntax
@@ -937,48 +757,34 @@ functionName.call(object, args);
 function show(city) {
   return this.name + " from " + city;
 }
-
 let person = { name: "Ajay" };
-
 console.log(show.call(person, "Delhi"));
 
-🔹 Output
-Ajay from Delhi
+🔹 Output : Ajay from Delhi
 
 🔹 Explanation
-
-.call() is an object method
-
-Function borrows context using this
-
-Confirms function behaves as object
+--> .call() is an object method
+--> Function borrows context using this
+--> Confirms function behaves as object
 
 📌 FINAL INTERVIEW ONE-LINE ANSWER
-
-In JavaScript, functions are first-class objects. They can be assigned to variables, have properties and methods, be passed as arguments, and returned from other functions.
+--> In JavaScript, functions are first-class objects. 
+--> They can be assigned to variables, have properties and methods, be passed as arguments, and returned from other functions.
 
 
 --------------------------🔹 Object-Oriented Programming (OOP) in JavaScript -----------------------------------------------
 
 ✅ What is OOP?
-
-Object-Oriented Programming is a programming paradigm that organizes code using objects that contain data (properties) and behavior (methods).
-
-JavaScript supports OOP using:
-
-Objects
-
-Constructor functions
-
-Prototypes
-
-ES6 Classes (syntactic sugar)
+--> Object-Oriented Programming is a programming paradigm that organizes code using objects that contain data (properties) and behavior (methods).
+--> JavaScript supports OOP using:
+   1. Objects
+   2. Constructor functions
+   3. Prototypes
+   4. ES6 Classes (syntactic sugar)
 
 🔥 Four Pillars of OOP in JavaScript
-1️⃣ Encapsulation
-🔹 Definition
-
-Binding data and methods together inside a single unit (object).
+1️⃣ Encapsulation : 
+--> Binding data and methods together inside a single unit (object).
 
 🔹 Syntax / Example
 class Student {
@@ -995,19 +801,14 @@ class Student {
 let s1 = new Student("Ajay", "A");
 s1.study();
 
-🔹 Output
-Ajay is studying
+🔹 Output : Ajay is studying
 
 🔹 Explanation
+--> Data (name, grade) and behavior (study) are wrapped together
+--> Accessed using object reference
 
-Data (name, grade) and behavior (study) are wrapped together
-
-Accessed using object reference
-
-2️⃣ Abstraction
-🔹 Definition
-
-Hiding implementation details and showing only essential features.
+2️⃣ Abstraction : 
+--> Hiding implementation details and showing only essential features.
 
 🔹 Example
 class Car {
@@ -1029,15 +830,11 @@ Engine running
 Car started
 
 🔹 Explanation
+--> User interacts only with start()
+--> Internal method #engineOn() is hidden
 
-User interacts only with start()
-
-Internal method #engineOn() is hidden
-
-3️⃣ Inheritance
-🔹 Definition
-
-One class acquiring properties and methods of another class.
+3️⃣ Inheritance : 
+--> One class acquiring properties and methods of another class.
 
 🔹 Syntax / Example
 class Person {
@@ -1061,15 +858,11 @@ Hello
 Student is studying
 
 🔹 Explanation
+--> Student inherits Person
+--> Code reusability achieved
 
-Student inherits Person
-
-Code reusability achieved
-
-4️⃣ Polymorphism
-🔹 Definition
-
-Same method name, different behavior.
+4️⃣ Polymorphism : 
+--> Same method name, different behavior.
 
 🔹 Example
 class Animal {
@@ -1095,10 +888,8 @@ Animal sound
 Dog barks
 
 🔹 Explanation
-
-Method overriding
-
-Same method behaves differently
+--> Method overriding
+--> Same method behaves differently
 
 🔹 Constructor Function (Before ES6)
 function Student(name) {
@@ -1123,14 +914,12 @@ let student = Object.create(person);
 student.greet();
 
 📌 Interview One-Line Answer
-
-JavaScript supports object-oriented programming using objects, prototypes, and ES6 classes, implementing encapsulation, abstraction, inheritance, and polymorphism.
+--> JavaScript supports object-oriented programming using objects, prototypes, and ES6 classes, implementing encapsulation, abstraction, inheritance, and polymorphism.
 
 
 -------------------🚀 Learn How to Take User Input in JavaScript ?--------------------------------
-
-Taking input from the user is one of the first and most important steps when learning programming.
- Here’s how you can do it easily in JavaScript 👇
+--> Taking input from the user is one of the first and most important steps when learning programming.
+--> Here’s how you can do it easily in JavaScript 👇
 
 💻 In Browser:
 
@@ -1138,20 +927,18 @@ let name = prompt("Enter your name:");
 alert("Hello, " + name + "!");
 
 ⚙️ In Node.js (VS Code / Terminal):
-
-First install the package using : npm install prompt-sync
+--> First install the package using : npm install prompt-sync
 
 const input = require("prompt-sync")();
 let name = input("Enter your name: ");
 console.log("Hello, " + name + "!");
 
-Run program using : node filename.js
+--> Run program using : node filename.js
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
 📌 What is DOM (Document Object Model)?
-
-The DOM is a programming interface provided by the browser that represents an HTML (or XML) document as a tree of objects.
+--> The DOM is a programming interface provided by the browser that represents an HTML (or XML) document as a tree of objects.
 
 👉 It allows JavaScript to:
 --> Read HTML elements
@@ -1339,22 +1126,18 @@ Note: 👉 React updates Virtual DOM, then syncs minimal changes to real DOM.
 
 🧪 Common Interview Questions
 Q1: Is DOM part of JavaScript?
-
-❌ No
-✔ It’s a Browser API
+--> ❌ No
+--> ✔ It’s a Browser API
 
 Q2: Why is DOM manipulation slow?
-
-✔ Causes reflow & repaint
+--> ✔ Causes reflow & repaint
 
 Q3: Difference between innerText and textContent?
-
-✔ textContent is faster and ignores styles
+--> ✔ textContent is faster and ignores styles
 
 Q4: What is event delegation?
-
-✔ Handling events at parent using bubbling
+--> ✔ Handling events at parent using bubbling
 
 ✅ Final Summary (One-Liner for Interview)
-
-“The DOM is a browser-provided tree-like object model of an HTML document that allows JavaScript to dynamically read, modify, and handle user interactions efficiently.”
+--> “The DOM is a browser-provided tree-like object model of an HTML document that allows JavaScript to dynamically 
+     read, modify, and handle user interactions efficiently.”
